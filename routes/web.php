@@ -18,5 +18,5 @@ Route::get('/', function () {
 });
 
 Auth::routes();
-//this is a test
+//this is a test 1222
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
