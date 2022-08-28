@@ -13,9 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     // return view('welcome');
+//     // return redirect(route('/login'));
+//     Route::redirect('/here', '/there');
+// });
+
+Route::redirect('/', '/login');
+
 
 Auth::routes();
 //this is a test 1222
