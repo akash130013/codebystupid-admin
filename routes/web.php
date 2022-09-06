@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 /*
 |--------------------------------------------------------------------------
@@ -25,3 +26,7 @@ Route::redirect('/', '/login');
 Auth::routes();
 //this is a test 1222
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+/** Blogs route */
+Route::get('/blogs', [App\Http\Controllers\BlogController::class, 'index'])->name('blogs');
+Route::get('/blogs/create', [App\Http\Controllers\BlogController::class, 'create'])->name('blogs.create');

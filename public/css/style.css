@@ -1,10 +1,50 @@
-aside {
-    height: 100vh;
+header {
+    /* height: 2rem; */
 }
- header{
-     height: 3rem;
- }
+body {
+    /* height: 100vh; */
+}
 
-.nav-link{
+.nav-link {
     color: white;
+}
+
+.preview-img {
+    height: 280px;
+    width: 480px;
+    border: 1px dotted;
+}
+
+.remove-img {
+    position: relative;
+    top: -135px;
+    /* right: 12px; */
+    color: tomato;
+    font-size: 2rem;
+    left: 12px;
+    font-weight: 900;
+}
+
+.remove-img:hover {
+    cursor: pointer;
+    color: red;
+}
+.grow {
+    flex: 1;
+}
+
+.main {
+    overflow-y: auto;
+}
+
+.aside-bar {
+    height: 88vh;
+}
+
+.navbar-brand {
+    color: white !important;
+}
+
+a#navbarDropdown {
+    color: white !important;
 }
