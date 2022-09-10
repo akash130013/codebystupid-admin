@@ -26,29 +26,19 @@
 </head>
 
 <body>
-    <div class="container-fluid d-flex flex-column h-100 align-items-center px-0">
+    <div class="wrapper">
 
-        <!-- <div class="container"> -->
-
-        <div class="row grow w-100">
-            <div class="col-12 bg-dark text-white py-3">
+        <div id="sidebar" class="bg-primary">
+            @include('layouts.aside')
+        </div>
+        <div class="main" id="main">
+            <header>
                 @include('layouts.header')
-            </div>
-            <div class="col-1 bg-primary py-3 aside-bar">
-                @include('layouts.aside')
-            </div>
-            <div class="main col-11 py-3">
+            </header>
+            <div class="content">
                 @yield('content')
             </div>
         </div>
-
-        <footer class="container-fluid fixed-bottom w-100">
-            <div class="row">
-                <div class="col-12 py-3 bg-dark text-white">
-                    Footer
-                </div>
-            </div>
-        </footer>
 
     </div>
 </body>

@@ -25,29 +25,29 @@
 <main>
     <div class="row justify-content-center">
 
-        <div>
-            <h2>Create Blog</h2>
-        </div>
 
-        <div class="row">
+
+
+
+        <div class="blog-form">
 
             <form>
-
+                <h2>Create Blog</h2>
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <label for="inputTitle">Title</label>
+                    <div class="form-group col-md-9">
+                        <label for="inputTitle">Title <sup>*</sup> </label>
                         <input type="text" class="form-control" id="inputTitle" placeholder="Enter Title" required>
 
                     </div>
-                    <div class="form-group col-md-6">
-                        <label for="formControlTextarea">Enter Sort description</label>
+                    <div class="form-group col-md-9">
+                        <label for="formControlTextarea">Enter Sort description <sup>*</sup></label>
                         <textarea class="form-control" id="formControlTextarea" rows="7"></textarea>
                     </div>
 
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-6">
+                    <div class="form-group col-md-9">
                         <input type="checkbox" class="form-check-input" id="isEnable">
                         <label class="form-check-label" for="isEnable">Enable</label>
                     </div>
@@ -56,19 +56,17 @@
                 </div>
 
                 <div class="form-row">
-                    <div class="form-group col-md-6">
-                        <!-- <label for="thumbimg">Upload Thumbnail</label> -->
-
+                    <div class="form-group col-md-9">
+                        <label for="thumbimg">Upload Thumbnail <sup>*</sup> </label><br>
                         <input type="file" accept="image/*" onchange="loadFile(event)">
-                        <span class="remove-img" onclick="removeFile()">X</span>
                         <img id="output" class="preview-img" />
 
                     </div>
                 </div>
                 <div class="form-row">
 
-                    <div class="form-group" id="container">
-                        <label for="formControlTextarea">Enter Long description</label>
+                    <div class="form-group col-md-9" id="container">
+                        <label for="formControlTextarea">Enter Long description <sup>*</sup></label>
                         <div id="editor"></div>
                     </div>
                 </div>

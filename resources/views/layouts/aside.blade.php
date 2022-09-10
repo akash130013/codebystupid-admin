@@ -11,7 +11,3 @@
         </li>
     </ul>
 </aside>
-
-<!-- <div class="col-4 bg-info py-3"> -->
-
-<!-- </div> -->
