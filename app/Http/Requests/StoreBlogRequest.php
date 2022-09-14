@@ -29,7 +29,9 @@ class StoreBlogRequest extends FormRequest
             'title' => 'required',
             'short_desc' => 'required',
             // 'is_enable' => 'required',
-            'long_desc' => 'required'
+            'long_desc' => 'required',
+            'author_id' => 'required',
+            'thumb_img' => 'required'
         ];
     }
 }

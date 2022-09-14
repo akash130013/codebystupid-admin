@@ -52,7 +52,7 @@ class AuthorController extends Controller
             'name' => $request->name,
             'is_active' => 1,
             'profile_image_url' => $request->profile_image_url ?? '',
-            'created_at' => Carbon::now()
+            'created_at' => Carbon::now(),
 
         ]);
         // 

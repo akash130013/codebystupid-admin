@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 
@@ -23,11 +24,10 @@ class BlogController extends Controller
     {
         if ($request->filled('search')) {
             $blogs = Blog::search($request->search)->paginate(10);
-            // dd($blogs);
         } else {
-            $blogs = Blog::paginate(10);
+            $blogs = Blog::with('author')->paginate(10);
         }
-        // $blogs = Blog::paginate(10);
+
         return view('blog.index', compact('blogs'));
     }
 
@@ -39,7 +39,8 @@ class BlogController extends Controller
     public function create()
     {
         //
-        return view('blog.create');
+        $authors = Author::all();
+        return view('blog.create', compact('authors'));
     }
 
     /**
@@ -51,12 +52,22 @@ class BlogController extends Controller
     public function store(StoreBlogRequest $request)
     {
 
-        Blog::create([
+        $imageName = time() . '.' . $request->thumb_img->extension();
+        // Public Folder
+        $request->thumb_img->move(public_path('images'), $imageName);
+
+        $blogArr = [
             'title' => $request->title,
             'short_desc' => $request->short_desc,
             'long_desc' => htmlentities($request->long_desc),
-            'is_enable' => $request->is_enable ? 1 : 0
-        ]);
+            'is_enable' => $request->is_enable ? 1 : 0,
+            'author_id' => $request->author_id,
+            'img_name' => $imageName,
+            'thumb_img_url' => $imageName,
+            'status' => 1
+        ];
+
+        Blog::create($blogArr);
         // 
         return redirect()->route('blogs')->with('success', 'Blog created successfully');
         // return back()->with('success', 'We have received your message and would like to thank you for writing to us.');
@@ -81,8 +92,9 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog, $id)
     {
-        $blog = $blog->find($id);
-        return view('blog.edit', compact('blog'));
+        $blog = $blog::with('author')->find($id);
+        $authors = Author::all();
+        return view('blog.edit', compact('blog', 'authors'));
     }
 
     /**
@@ -94,14 +106,23 @@ class BlogController extends Controller
      */
     public function update(UpdateBlogRequest $request, Blog $blog, $id)
     {
-        //
-        // dd($request->all(), $blog, $id);
-        $blog::where('id', $id)->update([
+
+
+        $imageName = time() . '.' . $request->thumb_img->extension();
+        // Public Folder
+        $request->thumb_img->move(public_path('images'), $imageName);
+
+        $blogArr = [
             'title' => $request->title,
             'short_desc' => $request->short_desc,
-            'long_desc' => $request->long_desc,
-            'is_enable' => $request->is_enable ? 1 : 0
-        ]);
+            'long_desc' => htmlentities($request->long_desc),
+            'is_enable' => $request->is_enable ? 1 : 0,
+            'author_id' => $request->author_id,
+            'img_name' => $imageName,
+            'thumb_img_url' => $imageName
+        ];
+
+        $blog::where('id', $id)->update($blogArr);
         return redirect()->route('blogs')->with('success', 'Blog update successfully');
     }
 

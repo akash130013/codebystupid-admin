@@ -46,7 +46,7 @@
         <tr>
           <td>{{$blogs->firstItem() + $key}}</td>
           <td>{{$blog->title}}</td>
-          <td>----</td>
+          <td>{{$blog->author->name ?? ''}}</td>
           <td>{{$blog->is_enable ? "Yes" : "No"}}</td>
           <td>{{$blog->created_at}}</td>
           <td>

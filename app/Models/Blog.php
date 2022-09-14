@@ -12,7 +12,7 @@ class Blog extends Model
     use HasFactory, Searchable;
 
 
-    public $fillable = ['title', 'short_desc', 'long_desc', 'is_enable'];
+    public $fillable = ['title', 'short_desc', 'long_desc', 'is_enable', 'author_id', 'status', 'thumb_img_url', 'img_name'];
     public $timestamps = false;
 
     public function toSearchableArray()
@@ -20,5 +20,10 @@ class Blog extends Model
         return [
             'title' => $this->title,
         ];
+    }
+
+    function author()
+    {
+        return $this->hasOne(Author::class, 'id', 'author_id');
     }
 }

@@ -33,9 +33,10 @@
         </div>
         @endif
 
+
         <div class="blog-form">
 
-            <form method="post" action="{{ route('blogs.update',['id' => $blog->id]) }}">
+            <form enctype="multipart/form-data" method="post" action="{{ route('blogs.update',['id' => $blog->id]) }}">
                 @csrf
                 <h2>Create Blog</h2>
                 <div class="form-row">
@@ -46,9 +47,20 @@
                     </div>
                     <div class="form-group col-md-9">
                         <label for="formControlTextarea">Enter Sort description <sup>*</sup></label>
-                        <textarea class="form-control" name="short_desc" id="formControlTextarea" rows="7">
-                        {{$blog->short_desc ?? ''}}
-                        </textarea>
+                        <textarea class="form-control" name="short_desc" id="formControlTextarea" rows="7">{{$blog->short_desc ? trim($blog->short_desc) : ''}}</textarea>
+                    </div>
+
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-9">
+                        <label for="select-author">Author <sup>*</sup></label>
+                        <select class="form-select" id="select-author" name="author_id" required>
+                            <option value="">Select</option>
+                            @foreach($authors as $value)
+                            <option value="{{$value->id}}" @if($blog->author->id == $value->id) {{'selected'}} @endif>{{$value->name}}</option>
+                            @endforeach
+                        </select>
                     </div>
 
                 </div>
@@ -65,8 +77,8 @@
                 <div class="form-row">
                     <div class="form-group col-md-9">
                         <label for="thumbimg">Upload Thumbnail <sup>*</sup> </label><br>
-                        <input type="file" accept="image/*" onchange="loadFile(event)">
-                        <img id="output" class="preview-img" />
+                        <input type="file" name="thumb_img" accept="image/*" onchange="loadFile(event)">
+                        <img id="output" class="preview-img" src="{{ asset('/images/'.$blog->thumb_img_url)}}" />
 
                     </div>
                 </div>

@@ -36,7 +36,7 @@
 
         <div class="blog-form">
 
-            <form method="post" action="{{ route('blogs.store') }}">
+            <form method="post" action="{{ route('blogs.store') }}" enctype="multipart/form-data">
                 @csrf
                 <h2>Create Blog</h2>
                 <div class="form-row">
@@ -55,11 +55,11 @@
                 <div class="form-row">
                     <div class="form-group col-md-9">
                         <label for="select-author">Author <sup>*</sup></label>
-                        <select class="form-select" id="elect-author" name="author_id">
-                            <option>1</option>
-                            <option>2</option>
-                            <option>3</option>
-                            <option>4</option>
+                        <select class="form-select" id="select-author" name="author_id" required>
+                            <option value="">Select</option>
+                            @foreach($authors as $value)
+                            <option value="{{$value->id}}">{{$value->name}}</option>
+                            @endforeach
                         </select>
                     </div>
 
@@ -77,7 +77,7 @@
                 <div class="form-row">
                     <div class="form-group col-md-9">
                         <label for="thumbimg">Upload Thumbnail <sup>*</sup> </label><br>
-                        <input type="file" accept="image/*" onchange="loadFile(event)">
+                        <input type="file" accept="image/*" onchange="loadFile(event)" name="thumb_img">
                         <img id="output" class="preview-img" />
 
                     </div>
