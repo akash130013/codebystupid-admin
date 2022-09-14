@@ -87,3 +87,15 @@ aside a:hover {
 sup {
     color: red;
 }
+
+.table .list {
+    list-style-type: none;
+    display: flex;
+    gap: 1;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.table .list .list-item:hover {
+    cursor: pointer;
+}

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreBlogRequest;
 use App\Http\Requests\UpdateBlogRequest;
+use Illuminate\Http\Request;
 use App\Models\Blog;
 
 class BlogController extends Controller
@@ -18,10 +19,16 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
-        return view('blog.index');
+        if ($request->filled('search')) {
+            $blogs = Blog::search($request->search)->paginate(10);
+            // dd($blogs);
+        } else {
+            $blogs = Blog::paginate(10);
+        }
+        // $blogs = Blog::paginate(10);
+        return view('blog.index', compact('blogs'));
     }
 
     /**
@@ -43,7 +50,16 @@ class BlogController extends Controller
      */
     public function store(StoreBlogRequest $request)
     {
-        //
+
+        Blog::create([
+            'title' => $request->title,
+            'short_desc' => $request->short_desc,
+            'long_desc' => htmlentities($request->long_desc),
+            'is_enable' => $request->is_enable ? 1 : 0
+        ]);
+        // 
+        return redirect()->route('blogs')->with('success', 'Blog created successfully');
+        // return back()->with('success', 'We have received your message and would like to thank you for writing to us.');
     }
 
     /**
@@ -63,9 +79,10 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit(Blog $blog, $id)
     {
-        //
+        $blog = $blog->find($id);
+        return view('blog.edit', compact('blog'));
     }
 
     /**
@@ -75,9 +92,17 @@ class BlogController extends Controller
      * @param  \App\Models\Blog  $blog
      * @return \Illuminate\Http\Response
      */
-    public function update(UpdateBlogRequest $request, Blog $blog)
+    public function update(UpdateBlogRequest $request, Blog $blog, $id)
     {
         //
+        // dd($request->all(), $blog, $id);
+        $blog::where('id', $id)->update([
+            'title' => $request->title,
+            'short_desc' => $request->short_desc,
+            'long_desc' => $request->long_desc,
+            'is_enable' => $request->is_enable ? 1 : 0
+        ]);
+        return redirect()->route('blogs')->with('success', 'Blog update successfully');
     }
 
     /**

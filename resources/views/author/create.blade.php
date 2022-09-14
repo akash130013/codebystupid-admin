@@ -33,30 +33,23 @@
         </div>
         @endif
 
+
         <div class="blog-form">
 
-            <form method="post" action="{{ route('blogs.update',['id' => $blog->id]) }}">
+            <form method="post" action="{{ route('author.store') }}">
                 @csrf
-                <h2>Create Blog</h2>
+                <h2>Create Author</h2>
                 <div class="form-row">
                     <div class="form-group col-md-9">
-                        <label for="inputTitle">Title <sup>*</sup> </label>
-                        <input type="text" name="title" value="{{$blog->title ?? ''}}" class="form-control" id="inputTitle" placeholder="Enter Title" required>
-
+                        <label for="inputTitle">Name <sup>*</sup> </label>
+                        <input type="text" name="name" class="form-control" id="inputTitle" placeholder="Enter Name" required>
                     </div>
-                    <div class="form-group col-md-9">
-                        <label for="formControlTextarea">Enter Sort description <sup>*</sup></label>
-                        <textarea class="form-control" name="short_desc" id="formControlTextarea" rows="7">
-                        {{$blog->short_desc ?? ''}}
-                        </textarea>
-                    </div>
-
                 </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-9">
                         <input type="checkbox" name="is_enable" class="form-check-input" id="isEnable">
-                        <label class="form-check-label" for="isEnable">Enable</label>
+                        <label class="form-check-label" for="isEnable">Is Active</label>
                     </div>
 
 
@@ -64,19 +57,10 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-9">
-                        <label for="thumbimg">Upload Thumbnail <sup>*</sup> </label><br>
+                        <label for="thumbimg">Upload Profile </label><br>
                         <input type="file" accept="image/*" onchange="loadFile(event)">
                         <img id="output" class="preview-img" />
 
-                    </div>
-                </div>
-                <div class="form-row">
-
-                    <div class="form-group col-md-9" id="container">
-                        <label for="formControlTextarea">Enter Long description <sup>*</sup></label>
-                        <textarea name="long_desc" id="editor">
-                        {!!  html_entity_decode($blog->long_desc) !!}
-                        </textarea>
                     </div>
                 </div>
 
@@ -89,6 +73,5 @@
 </main>
 @endsection
 @section('js')
-<script src="https://cdn.ckeditor.com/ckeditor5/35.1.0/super-build/ckeditor.js"></script>
-<script src="{{URL::asset('js/ckeditor.js')}}"></script>
+
 @endsection

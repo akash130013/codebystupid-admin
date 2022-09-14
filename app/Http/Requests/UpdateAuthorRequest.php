@@ -3,9 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Illuminate\Support\Facades\Auth;
 
-class StoreBlogRequest extends FormRequest
+class UpdateAuthorRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -14,8 +13,7 @@ class StoreBlogRequest extends FormRequest
      */
     public function authorize()
     {
-        // return false;
-        return Auth::check();
+        return true;
     }
 
     /**
@@ -26,10 +24,7 @@ class StoreBlogRequest extends FormRequest
     public function rules()
     {
         return [
-            'title' => 'required',
-            'short_desc' => 'required',
-            // 'is_enable' => 'required',
-            'long_desc' => 'required'
+            'name' => 'required'
         ];
     }
 }
