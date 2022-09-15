@@ -99,3 +99,22 @@ sup {
 .table .list .list-item:hover {
     cursor: pointer;
 }
+
+.table .list .list-item {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.fa-unlock {
+    color: seagreen;
+}
+.fa-ban {
+    color: sienna;
+}
+.fa-trash {
+    color: red;
+}
+
+.ms-n5 {
+    margin-left: -40px;
+}

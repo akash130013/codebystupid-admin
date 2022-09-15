@@ -22,10 +22,11 @@ class BlogController extends Controller
      */
     public function index(Request $request)
     {
+
         if ($request->filled('search')) {
-            $blogs = Blog::search($request->search)->simplePaginate(10);
+            $blogs = Blog::search($request->search)->where('status', '!=', DELETE)->simplePaginate(10);
         } else {
-            $blogs = Blog::with('author')->simplePaginate(10);
+            $blogs = Blog::with('author')->where('status', '!=', DELETE)->simplePaginate(10);
         }
 
         return view('blog.index', compact('blogs'));

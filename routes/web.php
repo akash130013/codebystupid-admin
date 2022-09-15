@@ -35,6 +35,9 @@ Route::post('/blogs/store', [App\Http\Controllers\BlogController::class, 'store'
 Route::get('/blogs/edit/{id}', [App\Http\Controllers\BlogController::class, 'edit'])->name('blogs.edit');
 Route::post('/blogs/update/{id}', [App\Http\Controllers\BlogController::class, 'update'])->name('blogs.update');
 
+Route::post('/change-status', [App\Http\Controllers\CommonController::class, 'changeStatus'])->name('change-status');
+
+
 
 /** Author route */
 Route::get('/author', [App\Http\Controllers\AuthorController::class, 'index'])->name('author');
@@ -42,6 +45,7 @@ Route::get('/author/create', [App\Http\Controllers\AuthorController::class, 'cre
 Route::post('/author/store', [App\Http\Controllers\AuthorController::class, 'store'])->name('author.store');
 Route::get('/author/edit/{id}', [App\Http\Controllers\AuthorController::class, 'edit'])->name('author.edit');
 Route::post('/author/update/{id}', [App\Http\Controllers\AuthorController::class, 'update'])->name('author.update');
+
 
 
 /** Category route */
