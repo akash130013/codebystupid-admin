@@ -33,12 +33,32 @@ body {
     flex: 1;
 }
 
-.main {
-    overflow-y: auto;
+/* aside {
+    height: 100%;
+    position: fixed;
+    width: 10%;
+} */
+
+#sidebar {
+    position: fixed;
+    height: 100%;
+    width: 10%;
+    margin: 0px;
 }
 
-.aside-bar {
-    height: 88vh;
+#main {
+    width: 90%;
+    float: right;
+}
+
+.content {
+    margin: 5rem;
+}
+
+#main header {
+    width: 90%;
+    position: fixed;
+    margin: 0px;
 }
 
 .navbar-brand {
@@ -47,4 +67,54 @@ body {
 
 a#navbarDropdown {
     color: white !important;
+}
+
+.blog-form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+aside {
+    letter-spacing: 2px;
+}
+
+aside a:hover {
+    margin: 5px;
+    transition: 0.4s;
+    color: #fff;
+}
+sup {
+    color: red;
+}
+
+.table .list {
+    list-style-type: none;
+    display: flex;
+    gap: 1;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.table .list .list-item:hover {
+    cursor: pointer;
+}
+
+.table .list .list-item {
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}
+
+.fa-unlock {
+    color: seagreen;
+}
+.fa-ban {
+    color: sienna;
+}
+.fa-trash {
+    color: red;
+}
+
+.ms-n5 {
+    margin-left: -40px;
 }

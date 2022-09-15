@@ -19,36 +19,37 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css" rel="stylesheet">
+    <script src="{{asset('js/textData.js')}}"></script>
     <!-- Scripts -->
     <!-- @vite(['resources/sass/app.scss', 'resources/js/app.js']) -->
     @yield('css')
 </head>
 
 <body>
-    <div class="container-fluid d-flex flex-column h-100 align-items-center px-0">
+    <div class="wrapper">
 
-        <!-- <div class="container"> -->
-
-        <div class="row grow w-100">
-            <div class="col-12 bg-dark text-white py-3">
+        <div id="sidebar" class="bg-primary">
+            @include('layouts.aside')
+        </div>
+        <div class="main" id="main">
+            <header>
                 @include('layouts.header')
-            </div>
-            <div class="col-1 bg-primary py-3 aside-bar">
-                @include('layouts.aside')
-            </div>
-            <div class="main col-11 py-3">
+            </header>
+            <div class="content">
+                @if(Session::has('success'))
+                <div class="alert alert-success">
+                    {{Session::get('success')}}
+                </div>
+                @endif
+                @if(Session::has('error'))
+                <div class="alert alert-danger">
+                    {{Session::get('error')}}
+                </div>
+                @endif
                 @yield('content')
             </div>
         </div>
-
-        <footer class="container-fluid fixed-bottom w-100">
-            <div class="row">
-                <div class="col-12 py-3 bg-dark text-white">
-                    Footer
-                </div>
-            </div>
-        </footer>
 
     </div>
 </body>

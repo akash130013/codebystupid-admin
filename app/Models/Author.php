@@ -6,24 +6,17 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
-
-class Blog extends Model
+class Author extends Model
 {
     use HasFactory, Searchable;
 
-
-    public $fillable = ['title', 'short_desc', 'long_desc', 'is_enable', 'author_id', 'status', 'thumb_img_url', 'img_name'];
+    public $fillable = ['name', 'is_active', 'profile_image_url'];
     public $timestamps = false;
 
     public function toSearchableArray()
     {
         return [
-            'title' => $this->title,
+            'name' => $this->name,
         ];
-    }
-
-    function author()
-    {
-        return $this->hasOne(Author::class, 'id', 'author_id');
     }
 }
