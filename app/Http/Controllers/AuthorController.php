@@ -21,10 +21,10 @@ class AuthorController extends Controller
         //
 
         if ($request->filled('search')) {
-            $authors = Author::search($request->search)->paginate(10);
+            $authors = Author::search($request->search)->simplePaginate(10);
             // dd($blogs);
         } else {
-            $authors = Author::paginate(10);
+            $authors = Author::simplePaginate(10);
         }
         // $blogs = Blog::paginate(10);
         return view('author.index', compact('authors'));

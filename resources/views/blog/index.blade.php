@@ -41,7 +41,7 @@
       </thead>
       <tbody>
 
-        @foreach($blogs as $key => $blog)
+        @forelse($blogs as $key => $blog)
 
         <tr>
           <td>{{$blogs->firstItem() + $key}}</td>
@@ -62,8 +62,13 @@
 
           </td>
         </tr>
-
-        @endforeach
+        @empty
+        <tr>
+          <td>
+            <p>No record found.</p>
+          </td>
+        </tr>
+        @endforelse
 
       </tbody>
     </table>

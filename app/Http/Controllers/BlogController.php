@@ -23,9 +23,9 @@ class BlogController extends Controller
     public function index(Request $request)
     {
         if ($request->filled('search')) {
-            $blogs = Blog::search($request->search)->paginate(10);
+            $blogs = Blog::search($request->search)->simplePaginate(10);
         } else {
-            $blogs = Blog::with('author')->paginate(10);
+            $blogs = Blog::with('author')->simplePaginate(10);
         }
 
         return view('blog.index', compact('blogs'));
@@ -107,21 +107,24 @@ class BlogController extends Controller
     public function update(UpdateBlogRequest $request, Blog $blog, $id)
     {
 
-
-        $imageName = time() . '.' . $request->thumb_img->extension();
-        // Public Folder
-        $request->thumb_img->move(public_path('images'), $imageName);
-
         $blogArr = [
             'title' => $request->title,
             'short_desc' => $request->short_desc,
             'long_desc' => htmlentities($request->long_desc),
             'is_enable' => $request->is_enable ? 1 : 0,
             'author_id' => $request->author_id,
-            'img_name' => $imageName,
-            'thumb_img_url' => $imageName
+            // 'img_name' => $imageName,
+            // 'thumb_img_url' => $imageName
         ];
 
+        if ($request->hasFile('thumb_img')) {
+            $imageName = time() . '.' . $request->thumb_img->extension();
+            // Public Folder
+            $request->thumb_img->move(public_path('images'), $imageName);
+            $blogArr['img_name'] = $imageName;
+            $blogArr['thumb_img_url'] = $imageName;
+        }
+        // dd($blogArr);
         $blog::where('id', $id)->update($blogArr);
         return redirect()->route('blogs')->with('success', 'Blog update successfully');
     }

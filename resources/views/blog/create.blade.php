@@ -25,15 +25,6 @@
 <main>
     <div class="row justify-content-center">
 
-
-        @if(Session::has('success'))
-        <div class="alert alert-success">
-            <h1>This is a test data</h1>
-            {{Session::get('success')}}
-        </div>
-        @endif
-
-
         <div class="blog-form">
 
             <form method="post" action="{{ route('blogs.store') }}" enctype="multipart/form-data">
