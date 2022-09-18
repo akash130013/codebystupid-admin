@@ -20,7 +20,7 @@
         </div> -->
 
         <div class="col-md-6 mx-auto">
-          <div class="small fw-light">search</div>
+          <div class="small fw-light">search...</div>
           <div class="input-group">
             <input placeholder="Search by title..." class="form-control border-end-0 border rounded-pill" type="search" value="{{ request()->get('search') }}" name="search">
             <span class="input-group-append">
