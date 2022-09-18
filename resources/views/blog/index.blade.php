@@ -32,7 +32,7 @@
         </div>
 
         <div class="col-md-6 d-flex justify-content-end">
-          <a href="{{ route('blogs.create') }}" class="btn btn-primary">Add+</a>
+          <a href="{{ route('blogs.create') }}" class="btn btn-primary">Add..+</a>
         </div>
 
       </div>
