@@ -60,7 +60,7 @@
 
         @forelse($blogs as $key => $blog)
 
-        <tr>
+        <tr class="@if($blog->status == 2)inactive @endif">
           <td>{{$blogs->firstItem() + $key}}</td>
           <td>{{$blog->title}}</td>
           <td>{{$blog->author->name ?? ''}}</td>

@@ -118,3 +118,7 @@ sup {
 .ms-n5 {
     margin-left: -40px;
 }
+
+.inactive {
+    background-color: lightpink;
+}
