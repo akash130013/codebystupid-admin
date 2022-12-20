@@ -1,3 +1,9 @@
+$.ajaxSetup({
+    headers: {
+        "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
+    },
+});
+
 var loadFile = function (event) {
     const output = document.getElementById("output");
     output.src = URL.createObjectURL(event.target.files[0]);
@@ -14,6 +20,11 @@ var loadFile = function (event) {
 // }
 
 CKEDITOR.ClassicEditor.create(document.getElementById("editor"), {
+    ckfinder: {
+        uploadUrl: `${$("#imageUpload").val()}?_token=${$(
+            'meta[name="csrf-token"]'
+        ).attr("content")}`,
+    },
     // https://ckeditor.com/docs/ckeditor5/latest/features/toolbar/toolbar.html#extended-toolbar-configuration-format
     toolbar: {
         items: [

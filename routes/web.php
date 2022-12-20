@@ -36,6 +36,7 @@ Route::get('/blogs/edit/{id}', [App\Http\Controllers\BlogController::class, 'edi
 Route::post('/blogs/update/{id}', [App\Http\Controllers\BlogController::class, 'update'])->name('blogs.update');
 
 Route::post('/change-status', [App\Http\Controllers\CommonController::class, 'changeStatus'])->name('change-status');
+Route::post('/image-upload', [App\Http\Controllers\CommonController::class, 'storeImage'])->name('image.upload');
 
 
 
