@@ -86,6 +86,7 @@
 
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
+            <input type="hidden" id="imageUpload" value="{{route('image.upload')}}" />
         </div>
     </div>
 
