@@ -19,14 +19,11 @@ class AuthorController extends Controller
     public function index(Request $request)
     {
         //
-
         if ($request->filled('search')) {
             $authors = Author::search($request->search)->simplePaginate(10);
-            // dd($blogs);
         } else {
             $authors = Author::simplePaginate(10);
         }
-        // $blogs = Blog::paginate(10);
         return view('author.index', compact('authors'));
     }
 

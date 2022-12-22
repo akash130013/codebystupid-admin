@@ -25,7 +25,7 @@ Route::redirect('/', '/login');
 
 
 Auth::routes();
-//this is a test 1222
+
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /** Blogs route */
@@ -47,11 +47,13 @@ Route::post('/author/store', [App\Http\Controllers\AuthorController::class, 'sto
 Route::get('/author/edit/{id}', [App\Http\Controllers\AuthorController::class, 'edit'])->name('author.edit');
 Route::post('/author/update/{id}', [App\Http\Controllers\AuthorController::class, 'update'])->name('author.update');
 
+/** Contactus routes */
+Route::get('/contactus', [App\Http\Controllers\ContactusController::class, 'index'])->name('contactus');
 
 
 /** Category route */
-// Route::get('/author', [App\Http\Controllers\AuthorController::class, 'index'])->name('author');
-// Route::get('/author/create', [App\Http\Controllers\AuthorController::class, 'create'])->name('author.create');
-// Route::post('/author/store', [App\Http\Controllers\AuthorController::class, 'store'])->name('author.store');
-// Route::get('/author/edit/{id}', [App\Http\Controllers\AuthorController::class, 'edit'])->name('author.edit');
-// Route::post('/author/update/{id}', [App\Http\Controllers\AuthorController::class, 'update'])->name('author.update');
+Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('category');
+Route::get('/category/create', [App\Http\Controllers\CategoryController::class, 'create'])->name('category.create');
+Route::post('/category/store', [App\Http\Controllers\CategoryController::class, 'store'])->name('category.store');
+Route::get('/category/edit/{id}', [App\Http\Controllers\CategoryController::class, 'edit'])->name('category.edit');
+Route::post('/category/update/{id}', [App\Http\Controllers\CategoryController::class, 'update'])->name('category.update');

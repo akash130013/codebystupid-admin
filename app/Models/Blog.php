@@ -12,7 +12,10 @@ class Blog extends Model
     use HasFactory, Searchable;
 
 
-    public $fillable = ['title', 'short_desc', 'long_desc', 'is_enable', 'author_id', 'status', 'thumb_img_url', 'img_name'];
+    public $fillable = [
+        'title', 'short_desc', 'long_desc', 'is_enable', 'author_id', 'status',
+        'thumb_img_url', 'img_name', 'created_at', 'updated_at', 'category_id'
+    ];
     public $timestamps = false;
 
     public function toSearchableArray()
