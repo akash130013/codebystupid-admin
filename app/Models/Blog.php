@@ -24,9 +24,17 @@ class Blog extends Model
             'title' => $this->title,
         ];
     }
+    public function scopeNotDeleted($q)
+    {
+        return $q->where('status', '!=', DELETED);
+    }
 
     function author()
     {
         return $this->hasOne(Author::class, 'id', 'author_id');
+    }
+    function category()
+    {
+        return $this->hasOne(Category::class, 'id', 'category_id');
     }
 }

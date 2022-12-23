@@ -19,9 +19,14 @@ class CategoryController extends Controller
     public function index(Request $request)
     {
         if ($request->filled('search')) {
-            $categories = Category::search($request->search)->simplePaginate(10);
+            $categories = Category::search($request->search)
+                ->within('created_at')
+                ->query(function ($query) {
+                    return $query->notDeleted();
+                })
+                ->simplePaginate(PAGINATE);
         } else {
-            $categories = Category::simplePaginate(10);
+            $categories = Category::notDeleted()->simplePaginate(PAGINATE);
         }
         return view('category.index', compact('categories'));
     }

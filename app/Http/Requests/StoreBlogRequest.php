@@ -28,7 +28,7 @@ class StoreBlogRequest extends FormRequest
         return [
             'title' => 'required',
             'short_desc' => 'required',
-            // 'is_enable' => 'required',
+            'category_id' => 'required',
             'long_desc' => 'required',
             'author_id' => 'required',
             'thumb_img' => 'required'

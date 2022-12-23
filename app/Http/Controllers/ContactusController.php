@@ -17,9 +17,9 @@ class ContactusController extends Controller
     public function index(Request $request)
     {
         if ($request->filled('search')) {
-            $contactus = Contactus::search($request->search)->simplePaginate(10);
+            $contactus = Contactus::search($request->search)->simplePaginate(PAGINATE);
         } else {
-            $contactus = Contactus::simplePaginate(10);
+            $contactus = Contactus::simplePaginate(PAGINATE);
         }
         return view('contactus.index', compact('contactus'));
     }

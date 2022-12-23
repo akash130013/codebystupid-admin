@@ -70,13 +70,13 @@
                   <i class="fas fa-edit"></i>
                 </a>
               </li>
-              <li class="list-item" onclick="handleClick(msg.delete_title,msg.delete_text,msg.delete_icon,'{{$category->id}}','category', 3)"><i class="fas fa-trash"></i></li>
+              <li class="list-item" onclick="handleClick(msg.delete_title,msg.delete_text,msg.delete_icon,'{{$category->id}}','category', '{{DELETED}}')"><i class="fas fa-trash"></i></li>
               @if($category->status=='1')
-              <li class="list-item" onclick="handleClick(msg.block_title,msg.block_text,msg.delete_icon,'{{$category->id}}','category', 0)">
+              <li class="list-item" onclick="handleClick(msg.block_title,msg.block_text,msg.delete_icon,'{{$category->id}}','category', '{{INACTIVE}}')">
                 <i class="fas fa-unlock"></i>
               </li>
               @else
-              <li class="list-item" onclick="handleClick(msg.unblock_title,msg.unblock_text,msg.delete_icon,'{{$category->id}}','category', 1)">
+              <li class="list-item" onclick="handleClick(msg.unblock_title,msg.unblock_text,msg.delete_icon,'{{$category->id}}','category', '{{ACTIVE}}')">
                 <i class="fa fa-ban" aria-hidden="true"></i>
               </li>
               @endif

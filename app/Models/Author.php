@@ -19,4 +19,8 @@ class Author extends Model
             'name' => $this->name,
         ];
     }
+    public function scopeNotDeleted($q)
+    {
+        return $q->where('is_active', '!=', DELETED);
+    }
 }

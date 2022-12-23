@@ -36,10 +36,7 @@
         </div>
 
       </div>
-
     </form>
-
-
   </div>
 
 
@@ -50,6 +47,7 @@
           <th scope="col">Sr. No</th>
           <th scope="col">Title</th>
           <th scope="col">Author</th>
+          <th scope="col">Category</th>
           <th scope="col">Published</th>
           <th scope="col">Created At</th>
           <th scope="col">Status</th>
@@ -63,7 +61,8 @@
         <tr class="@if($blog->status == 2)inactive @endif">
           <td>{{$blogs->firstItem() + $key}}</td>
           <td>{{$blog->title}}</td>
-          <td>{{$blog->author->name ?? ''}}</td>
+          <td>{{$blog->author->name ?? 'NA'}}</td>
+          <td>{{$blog->category->title ?? 'NA'}}</td>
           <td>{{$blog->is_enable ? "Yes" : "No"}}</td>
           <td>{{$blog->created_at}}</td>
           <td>{{$blog->status=='1' ? 'Active': 'Inactive'}}</td>
@@ -74,13 +73,13 @@
                   <i class="fas fa-edit"></i>
                 </a>
               </li>
-              <li class="list-item" onclick="handleClick(msg.delete_title,msg.delete_text,msg.delete_icon,'{{$blog->id}}','blog', 3)"><i class="fas fa-trash"></i></li>
-              @if($blog->status=='1')
-              <li class="list-item" onclick="handleClick(msg.block_title,msg.block_text,msg.delete_icon,'{{$blog->id}}','blog', 0)">
+              <li class="list-item" onclick="handleClick(msg.delete_title,msg.delete_text,msg.delete_icon,'{{$blog->id}}','blog', '{{DELETED}}')"><i class="fas fa-trash"></i></li>
+              @if($blog->status==ACTIVE)
+              <li class="list-item" onclick="handleClick(msg.block_title,msg.block_text,msg.delete_icon,'{{$blog->id}}','blog', '{{INACTIVE}}')">
                 <i class="fas fa-unlock"></i>
               </li>
               @else
-              <li class="list-item" onclick="handleClick(msg.unblock_title,msg.unblock_text,msg.delete_icon,'{{$blog->id}}','blog', 1)">
+              <li class="list-item" onclick="handleClick(msg.unblock_title,msg.unblock_text,msg.delete_icon,'{{$blog->id}}','blog', '{{ACTIVE}}')">
                 <i class="fa fa-ban" aria-hidden="true"></i>
               </li>
               @endif
@@ -99,10 +98,7 @@
 
       </tbody>
     </table>
-
-
     {!! $blogs->links() !!}
-
   </div>
 
 </div>

@@ -10,7 +10,7 @@ class Category extends Model
 {
     use HasFactory, Searchable;
 
-    public $fillable = ['title', 'comment_desc', 'image_url', 'status', 'created_at', 'updated_at'];
+    public $fillable = ['title', 'comment_desc', 'image_url', 'status', 'created_at'];
     public $timestamps = false;
 
     public function toSearchableArray()
@@ -18,5 +18,9 @@ class Category extends Model
         return [
             'title' => $this->title,
         ];
+    }
+    public function scopeNotDeleted($q)
+    {
+        return $q->where('status', '!=', DELETED);
     }
 }

@@ -55,6 +55,17 @@
                     </div>
 
                 </div>
+                <div class="form-row">
+                    <div class="form-group col-md-9">
+                        <label for="select-category">Category <sup>*</sup></label>
+                        <select class="form-select" id="select-category" name="category_id" required>
+                            <option value="">Select</option>
+                            @foreach($category as $value)
+                            <option value="{{$value->id}}">{{$value->title}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
 
                 <div class="form-row">
                     <div class="form-group col-md-9">
