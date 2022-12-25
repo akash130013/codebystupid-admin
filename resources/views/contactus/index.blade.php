@@ -8,7 +8,7 @@
 
 <div class="row justify-content-center">
 
-  <h2>Blog!!</h2>
+  <h2>Contact Us!!</h2>
 
   <div class="row">
 
@@ -31,12 +31,12 @@
           </div>
         </div>
 
-        <div class="col-md-6 d-flex justify-content-end">
-          <a href="{{ route('blogs.create') }}" class="btn btn-primary">Add+</a>
-        </div>
 
       </div>
+
     </form>
+
+
   </div>
 
 
@@ -45,10 +45,8 @@
       <thead>
         <tr>
           <th scope="col">Sr. No</th>
-          <th scope="col">Title</th>
-          <th scope="col">Author</th>
-          <th scope="col">Category</th>
-          <th scope="col">Published</th>
+          <th scope="col">Name</th>
+          <th scope="col">Email</th>
           <th scope="col">Created At</th>
           <th scope="col">Status</th>
           <th scope="col">Action</th>
@@ -56,30 +54,29 @@
       </thead>
       <tbody>
 
-        @forelse($blogs as $key => $blog)
+        @forelse($contactus as $key => $contact)
 
-        <tr class="@if($blog->status == 2)inactive @endif">
-          <td>{{$blogs->firstItem() + $key}}</td>
-          <td>{{$blog->title}}</td>
-          <td>{{$blog->author->name ?? 'NA'}}</td>
-          <td>{{$blog->category->title ?? 'NA'}}</td>
-          <td>{{$blog->is_enable ? "Yes" : "No"}}</td>
-          <td>{{$blog->created_at}}</td>
-          <td>{{$blog->status=='1' ? 'Active': 'Inactive'}}</td>
+        <tr class="@if($contact->status == 2)inactive @endif">
+          <td>{{$contact->firstItem() + $key}}</td>
+          <td>{{$contact->name}}</td>
+          <td>{{$contact->email ?? ''}}</td>
+          <td>{{$contact->status ? "Not Resolved" : "Resolved"}}</td>
+          <td>{{$contact->created_at}}</td>
+          <td>{{$contact->status=='1' ? 'Active': 'Inactive'}}</td>
           <td>
             <ul class="list">
               <li class="list-item">
-                <a href="{{route('blogs.edit',['id' => $blog->id])}}">
+                <a href="{{route('contacts.edit',['id' => $contact->id])}}">
                   <i class="fas fa-edit"></i>
                 </a>
               </li>
-              <li class="list-item" onclick="handleClick(msg.delete_title,msg.delete_text,msg.delete_icon,'{{$blog->id}}','blog', '{{DELETED}}')"><i class="fas fa-trash"></i></li>
-              @if($blog->status==ACTIVE)
-              <li class="list-item" onclick="handleClick(msg.block_title,msg.block_text,msg.delete_icon,'{{$blog->id}}','blog', '{{INACTIVE}}')">
+              <li class="list-item" onclick="handleClick(msg.delete_title,msg.delete_text,msg.delete_icon,'{{$contact->id}}','contact', 3)"><i class="fas fa-trash"></i></li>
+              @if($contact->status=='1')
+              <li class="list-item" onclick="handleClick(msg.block_title,msg.block_text,msg.delete_icon,'{{$contact->id}}','contact', 0)">
                 <i class="fas fa-unlock"></i>
               </li>
               @else
-              <li class="list-item" onclick="handleClick(msg.unblock_title,msg.unblock_text,msg.delete_icon,'{{$blog->id}}','blog', '{{ACTIVE}}')">
+              <li class="list-item" onclick="handleClick(msg.unblock_title,msg.unblock_text,msg.delete_icon,'{{$contact->id}}','contact', 1)">
                 <i class="fa fa-ban" aria-hidden="true"></i>
               </li>
               @endif
@@ -98,7 +95,10 @@
 
       </tbody>
     </table>
-    {!! $blogs->links() !!}
+
+
+    {!! $contactus->links() !!}
+
   </div>
 
 </div>

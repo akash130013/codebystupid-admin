@@ -7,6 +7,7 @@ use App\Http\Requests\UpdateBlogRequest;
 use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Models\Blog;
+use App\Models\Category;
 
 class BlogController extends Controller
 {
@@ -24,9 +25,13 @@ class BlogController extends Controller
     {
 
         if ($request->filled('search')) {
-            $blogs = Blog::search($request->search)->where('status', '!=', DELETE)->simplePaginate(10);
+            $blogs = Blog::search($request->search)->within('created_at')
+                ->query(function ($query) {
+                    return $query->notDeleted();
+                })
+                ->simplePaginate(PAGINATE);
         } else {
-            $blogs = Blog::with('author')->where('status', '!=', DELETE)->simplePaginate(10);
+            $blogs = Blog::with(['author', 'category'])->notDeleted()->orderBy('created_at', 'desc')->simplePaginate(PAGINATE);
         }
 
         return view('blog.index', compact('blogs'));
@@ -41,7 +46,8 @@ class BlogController extends Controller
     {
         //
         $authors = Author::all();
-        return view('blog.create', compact('authors'));
+        $category = Category::all();
+        return view('blog.create', compact(['authors', 'category']));
     }
 
     /**
@@ -61,17 +67,16 @@ class BlogController extends Controller
             'title' => $request->title,
             'short_desc' => $request->short_desc,
             'long_desc' => htmlentities($request->long_desc),
-            'is_enable' => $request->is_enable ? 1 : 0,
+            'is_enable' => $request->is_enable ? ACTIVE : INACTIVE,
             'author_id' => $request->author_id,
             'img_name' => $imageName,
             'thumb_img_url' => $imageName,
-            'status' => 1
+            'status' => ACTIVE,
+            'category_id' => $request->category_id
         ];
 
         Blog::create($blogArr);
-        // 
         return redirect()->route('blogs')->with('success', 'Blog created successfully');
-        // return back()->with('success', 'We have received your message and would like to thank you for writing to us.');
     }
 
     /**
@@ -93,9 +98,10 @@ class BlogController extends Controller
      */
     public function edit(Blog $blog, $id)
     {
-        $blog = $blog::with('author')->find($id);
+        $blog = $blog::with(['author', 'category'])->find($id);
         $authors = Author::all();
-        return view('blog.edit', compact('blog', 'authors'));
+        $category = Category::all();
+        return view('blog.edit', compact('blog', 'authors', 'category'));
     }
 
     /**
@@ -114,7 +120,7 @@ class BlogController extends Controller
             'long_desc' => htmlentities($request->long_desc),
             'is_enable' => $request->is_enable ? 1 : 0,
             'author_id' => $request->author_id,
-            // 'img_name' => $imageName,
+            'category_id' => $request->category_id,
             // 'thumb_img_url' => $imageName
         ];
 

@@ -6,16 +6,11 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
 
-
-class Blog extends Model
+class Category extends Model
 {
     use HasFactory, Searchable;
 
-
-    public $fillable = [
-        'title', 'short_desc', 'long_desc', 'is_enable', 'author_id', 'status',
-        'thumb_img_url', 'img_name', 'created_at', 'updated_at', 'category_id'
-    ];
+    public $fillable = ['title', 'comment_desc', 'image_url', 'status', 'created_at'];
     public $timestamps = false;
 
     public function toSearchableArray()
@@ -27,14 +22,5 @@ class Blog extends Model
     public function scopeNotDeleted($q)
     {
         return $q->where('status', '!=', DELETED);
-    }
-
-    function author()
-    {
-        return $this->hasOne(Author::class, 'id', 'author_id');
-    }
-    function category()
-    {
-        return $this->hasOne(Category::class, 'id', 'category_id');
     }
 }

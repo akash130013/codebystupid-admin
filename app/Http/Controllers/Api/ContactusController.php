@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\Blog;
 use Illuminate\Http\Request;
 
-class BlogController extends Controller
+class ContactusController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,12 +14,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::with(['author', 'category'])->notDeleted()->orderBy('created_at', 'desc')->simplePaginate(PAGINATE);
-
-        return response()->json([
-            'status' => HTTP_OK,
-            'blogs' => $blogs
-        ]);
+        //
     }
 
     /**
@@ -47,26 +41,21 @@ class BlogController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Blog  $blog
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-
-        $blog = Blog::with(['author', 'category'])->where('id', $id)->get();;
-        return response()->json([
-            'status' => HTTP_OK,
-            'blog' => $blog,
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Blog  $blog
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(Blog $blog)
+    public function edit($id)
     {
         //
     }
@@ -75,10 +64,10 @@ class BlogController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Blog  $blog
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Blog $blog)
+    public function update(Request $request, $id)
     {
         //
     }
@@ -86,10 +75,10 @@ class BlogController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Blog  $blog
+     * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Blog $blog)
+    public function destroy($id)
     {
         //
     }

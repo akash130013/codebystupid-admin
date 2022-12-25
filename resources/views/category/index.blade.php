@@ -8,7 +8,7 @@
 
 <div class="row justify-content-center">
 
-  <h2>Blog!!</h2>
+  <h2>Category!!</h2>
 
   <div class="row">
 
@@ -32,11 +32,14 @@
         </div>
 
         <div class="col-md-6 d-flex justify-content-end">
-          <a href="{{ route('blogs.create') }}" class="btn btn-primary">Add+</a>
+          <a href="{{ route('category.create') }}" class="btn btn-primary">Add+</a>
         </div>
 
       </div>
+
     </form>
+
+
   </div>
 
 
@@ -46,9 +49,6 @@
         <tr>
           <th scope="col">Sr. No</th>
           <th scope="col">Title</th>
-          <th scope="col">Author</th>
-          <th scope="col">Category</th>
-          <th scope="col">Published</th>
           <th scope="col">Created At</th>
           <th scope="col">Status</th>
           <th scope="col">Action</th>
@@ -56,30 +56,27 @@
       </thead>
       <tbody>
 
-        @forelse($blogs as $key => $blog)
+        @forelse($categories as $key => $category)
 
-        <tr class="@if($blog->status == 2)inactive @endif">
-          <td>{{$blogs->firstItem() + $key}}</td>
-          <td>{{$blog->title}}</td>
-          <td>{{$blog->author->name ?? 'NA'}}</td>
-          <td>{{$blog->category->title ?? 'NA'}}</td>
-          <td>{{$blog->is_enable ? "Yes" : "No"}}</td>
-          <td>{{$blog->created_at}}</td>
-          <td>{{$blog->status=='1' ? 'Active': 'Inactive'}}</td>
+        <tr class="@if($category->status == 2)inactive @endif">
+          <td>{{$categories->firstItem() + $key}}</td>
+          <td>{{$category->title}}</td>
+          <td>{{$category->created_at}}</td>
+          <td>{{$category->status=='1' ? 'Active': 'Inactive'}}</td>
           <td>
             <ul class="list">
               <li class="list-item">
-                <a href="{{route('blogs.edit',['id' => $blog->id])}}">
+                <a href="{{route('category.edit',['id' => $category->id])}}">
                   <i class="fas fa-edit"></i>
                 </a>
               </li>
-              <li class="list-item" onclick="handleClick(msg.delete_title,msg.delete_text,msg.delete_icon,'{{$blog->id}}','blog', '{{DELETED}}')"><i class="fas fa-trash"></i></li>
-              @if($blog->status==ACTIVE)
-              <li class="list-item" onclick="handleClick(msg.block_title,msg.block_text,msg.delete_icon,'{{$blog->id}}','blog', '{{INACTIVE}}')">
+              <li class="list-item" onclick="handleClick(msg.delete_title,msg.delete_text,msg.delete_icon,'{{$category->id}}','category', '{{DELETED}}')"><i class="fas fa-trash"></i></li>
+              @if($category->status=='1')
+              <li class="list-item" onclick="handleClick(msg.block_title,msg.block_text,msg.delete_icon,'{{$category->id}}','category', '{{INACTIVE}}')">
                 <i class="fas fa-unlock"></i>
               </li>
               @else
-              <li class="list-item" onclick="handleClick(msg.unblock_title,msg.unblock_text,msg.delete_icon,'{{$blog->id}}','blog', '{{ACTIVE}}')">
+              <li class="list-item" onclick="handleClick(msg.unblock_title,msg.unblock_text,msg.delete_icon,'{{$category->id}}','category', '{{ACTIVE}}')">
                 <i class="fa fa-ban" aria-hidden="true"></i>
               </li>
               @endif
@@ -98,7 +95,10 @@
 
       </tbody>
     </table>
-    {!! $blogs->links() !!}
+
+
+    {!! $categories->links() !!}
+
   </div>
 
 </div>

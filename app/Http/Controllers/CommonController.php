@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Author;
 use App\Models\Blog;
+use App\Models\Category;
 use Illuminate\Http\Request;
 
 
@@ -25,8 +27,17 @@ class CommonController extends Controller
                     Blog::find($request->id)->update(['status' => $request->status]);
 
                     return response(['code' =>  HTTP_OK, 'msg' => 'successfully done']);
-                    // break;
+                case 'author':
 
+                    Author::find($request->id)->update(['is_active' => $request->status]);
+
+                    return response(['code' =>  HTTP_OK, 'msg' => 'successfully done']);
+
+                case 'category':
+
+                    Category::find($request->id)->update(['status' => $request->status]);
+
+                    return response(['code' =>  HTTP_OK, 'msg' => 'successfully done']);
                 default:
                     # code...
                     break;

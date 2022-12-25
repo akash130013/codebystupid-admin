@@ -19,14 +19,15 @@ class AuthorController extends Controller
     public function index(Request $request)
     {
         //
-
         if ($request->filled('search')) {
-            $authors = Author::search($request->search)->simplePaginate(10);
-            // dd($blogs);
+            $authors = Author::search($request->search)->within('created_at')
+                ->query(function ($query) {
+                    return $query->notDeleted();
+                })
+                ->simplePaginate(PAGINATE);
         } else {
-            $authors = Author::simplePaginate(10);
+            $authors = Author::notDeleted()->orderBy('created_at', 'desc')->simplePaginate(PAGINATE);
         }
-        // $blogs = Blog::paginate(10);
         return view('author.index', compact('authors'));
     }
 

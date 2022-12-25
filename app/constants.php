@@ -12,9 +12,10 @@ const HTTP_FORBIDDEN = 403;
 const HTTP_NOT_FOUND = 404;
 const HTTP_INTERNAL_SERVER = 500;
 
+const PAGINATE = 10;
 const ACTIVE = 1;
 const INACTIVE = 0;
-const DELETE = 3;
+const DELETED = 3;
 
 //EX
 // define('PATHINFO_FILENAME', 'public/images');

@@ -122,3 +122,7 @@ sup {
 .inactive {
     background-color: lightpink;
 }
+
+.nav-active {
+    color: black;
+}
