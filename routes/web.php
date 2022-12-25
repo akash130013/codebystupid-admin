@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers;
+use Artisan;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,17 +16,12 @@ use App\Http\Controllers;
 |
 */
 
-// Route::get('/', function () {
-//     // return view('welcome');
-//     // return redirect(route('/login'));
-//     Route::redirect('/here', '/there');
-// });
+Route::get('/run-migrations', function () {
+    return Artisan::call('migrate', ["--force" => true]);
+});
 
 Route::redirect('/', '/login');
-
-
 Auth::routes();
-
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 /** Blogs route */
@@ -35,10 +31,9 @@ Route::post('/blogs/store', [App\Http\Controllers\BlogController::class, 'store'
 Route::get('/blogs/edit/{id}', [App\Http\Controllers\BlogController::class, 'edit'])->name('blogs.edit');
 Route::post('/blogs/update/{id}', [App\Http\Controllers\BlogController::class, 'update'])->name('blogs.update');
 
+/** Common routes */
 Route::post('/change-status', [App\Http\Controllers\CommonController::class, 'changeStatus'])->name('change-status');
 Route::post('/image-upload', [App\Http\Controllers\CommonController::class, 'storeImage'])->name('image.upload');
-
-
 
 /** Author route */
 Route::get('/author', [App\Http\Controllers\AuthorController::class, 'index'])->name('author');
@@ -49,7 +44,6 @@ Route::post('/author/update/{id}', [App\Http\Controllers\AuthorController::class
 
 /** Contactus routes */
 Route::get('/contactus', [App\Http\Controllers\ContactusController::class, 'index'])->name('contactus');
-
 
 /** Category route */
 Route::get('/category', [App\Http\Controllers\CategoryController::class, 'index'])->name('category');

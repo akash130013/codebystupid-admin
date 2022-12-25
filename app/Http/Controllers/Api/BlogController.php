@@ -15,7 +15,7 @@ class BlogController extends Controller
      */
     public function index()
     {
-        $blogs = Blog::all();
+        $blogs = Blog::with(['author', 'category'])->notDeleted()->orderBy('created_at', 'desc')->simplePaginate(PAGINATE);
 
         return response()->json([
             'status' => HTTP_OK,
@@ -53,7 +53,7 @@ class BlogController extends Controller
     public function show($id)
     {
 
-        $blog = Blog::find($id);
+        $blog = Blog::with(['author', 'category'])->where('id', $id)->get();;
         return response()->json([
             'status' => HTTP_OK,
             'blog' => $blog,
