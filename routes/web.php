@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers;
-use Artisan;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -16,8 +16,14 @@ use Artisan;
 |
 */
 
+// Clear application cache:
+Route::get('/clear-cache', function () {
+    Artisan::call('cache:clear');
+    return 'Application cache has been cleared';
+});
 Route::get('/run-migrations', function () {
-    return Artisan::call('migrate', ["--force" => true]);
+    Artisan::call('migrate', ["--force" => true]);
+    return 'migration completed';
 });
 
 Route::redirect('/', '/login');
