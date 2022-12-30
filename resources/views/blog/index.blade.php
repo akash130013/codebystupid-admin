@@ -83,14 +83,12 @@
                 <i class="fa fa-ban" aria-hidden="true"></i>
               </li>
               @endif
-
             </ul>
-
           </td>
         </tr>
         @empty
         <tr>
-          <td>
+          <td colspan="5">
             <p>No record found.</p>
           </td>
         </tr>

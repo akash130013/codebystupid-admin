@@ -11,7 +11,7 @@ class Contactus extends Model
 {
     use HasFactory, Searchable;
 
-    public $fillable = ['name', 'email', 'comment', 'status', 'created_at', 'updated_at'];
+    public $fillable = ['name', 'email', 'comment', 'status', 'created_at', 'updated_at', 'subject'];
     public $timestamps = false;
 
     public function toSearchableArray()

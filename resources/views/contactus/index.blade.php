@@ -57,7 +57,7 @@
         @forelse($contactus as $key => $contact)
 
         <tr class="@if($contact->status == 2)inactive @endif">
-          <td>{{$contact->firstItem() + $key}}</td>
+          <td>{{$contactus->firstItem() + $key}}</td>
           <td>{{$contact->name}}</td>
           <td>{{$contact->email ?? ''}}</td>
           <td>{{$contact->status ? "Not Resolved" : "Resolved"}}</td>
@@ -65,11 +65,7 @@
           <td>{{$contact->status=='1' ? 'Active': 'Inactive'}}</td>
           <td>
             <ul class="list">
-              <li class="list-item">
-                <a href="{{route('contacts.edit',['id' => $contact->id])}}">
-                  <i class="fas fa-edit"></i>
-                </a>
-              </li>
+
               <li class="list-item" onclick="handleClick(msg.delete_title,msg.delete_text,msg.delete_icon,'{{$contact->id}}','contact', 3)"><i class="fas fa-trash"></i></li>
               @if($contact->status=='1')
               <li class="list-item" onclick="handleClick(msg.block_title,msg.block_text,msg.delete_icon,'{{$contact->id}}','contact', 0)">
