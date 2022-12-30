@@ -23,4 +23,4 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::apiResource('blogs', BlogController::class);
-Route::apiResource('contactus', ContactusController::class);
+Route::post('/contact', [ContactusController::class, 'store']);
