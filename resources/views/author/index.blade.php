@@ -42,7 +42,7 @@
 
                 @forelse($authors as $key => $author)
 
-                <tr>
+                <tr class="@if($author->is_active == 0)inactive @endif">
                     <td>{{$authors->firstItem() + $key}}</td>
                     <td>{{$author->name}}</td>
                     <td>{{$author->created_at}}</td>
