@@ -49,21 +49,21 @@
           <th scope="col">Email</th>
           <th scope="col">Created At</th>
           <th scope="col">Status</th>
-          <th scope="col">Action</th>
+          <!-- <th scope="col">Action</th> -->
         </tr>
       </thead>
       <tbody>
 
         @forelse($contactus as $key => $contact)
 
-        <tr class="@if($contact->status == 2)inactive @endif">
+        <tr class="@if($contact->status == 0) inactive @endif">
           <td>{{$contactus->firstItem() + $key}}</td>
           <td>{{$contact->name}}</td>
-          <td>{{$contact->email ?? ''}}</td>
+          <td>{{$contact->email ?? 'NA'}}</td>
+          <td>{{$contact->created_at ?? 'NA'}}</td>
           <td>{{$contact->status ? "Not Resolved" : "Resolved"}}</td>
-          <td>{{$contact->created_at}}</td>
-          <td>{{$contact->status=='1' ? 'Active': 'Inactive'}}</td>
-          <td>
+          <!-- <td>{{$contact->status=='1' ? 'Active': 'Inactive'}}</td> -->
+          <!-- <td>
             <ul class="list">
 
               <li class="list-item" onclick="handleClick(msg.delete_title,msg.delete_text,msg.delete_icon,'{{$contact->id}}','contact', 3)"><i class="fas fa-trash"></i></li>
@@ -79,7 +79,7 @@
 
             </ul>
 
-          </td>
+          </td> -->
         </tr>
         @empty
         <tr>

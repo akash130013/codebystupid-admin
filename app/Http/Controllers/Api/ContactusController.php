@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\Contactus;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
+
 
 class ContactusController extends Controller
 {
@@ -51,6 +53,7 @@ class ContactusController extends Controller
         $contact->email = $request->input('email');
         $contact->subject = $request->input('subject');
         $contact->comment = $request->input('message');
+        $contact->created_at =  Carbon::now();
         $contact->save();
 
         // Return a success response

@@ -58,7 +58,7 @@
 
         @forelse($categories as $key => $category)
 
-        <tr class="@if($category->status == 2)inactive @endif">
+        <tr class="@if($category->status == 0)inactive @endif">
           <td>{{$categories->firstItem() + $key}}</td>
           <td>{{$category->title}}</td>
           <td>{{$category->created_at}}</td>
