@@ -13,10 +13,15 @@ class BlogController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $blogs = Blog::with(['author', 'category'])->notDeleted()->orderBy('created_at', 'desc')->simplePaginate(PAGINATE);
-
+        if ($request->filled('q')) {
+            $blogs = Blog::search($request->q)->within('created_at')->query(function ($builder) {
+                $builder->active()->with(['author', 'category']);
+            })->paginate(PAGINATE);
+        } else {
+            $blogs = Blog::with(['author', 'category'])->active()->orderBy('created_at', 'desc')->paginate(PAGINATE);
+        }
         return response()->json([
             'status' => HTTP_OK,
             'blogs' => $blogs

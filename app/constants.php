@@ -17,5 +17,15 @@ const ACTIVE = 1;
 const INACTIVE = 0;
 const DELETED = 3;
 
-//EX
-// define('PATHINFO_FILENAME', 'public/images');
+const DURATION = [
+    '1 min read',
+    '2 min read',
+    '3 min read',
+    '4 min read',
+    '5 min read',
+    '6 min read',
+    '7 min read',
+    '8 min read',
+    '9 min read',
+    '10 min read',
+];

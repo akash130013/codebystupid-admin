@@ -53,8 +53,20 @@
                             @endforeach
                         </select>
                     </div>
-
                 </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-9">
+                        <label for="select-duration">Duraion <sup>*</sup></label>
+                        <select class="form-select" id="select-duration" name="duration" required>
+                            <option value="">Select</option>
+                            @foreach($duration as $value)
+                            <option value="{{$value}}">{{$value}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
                 <div class="form-row">
                     <div class="form-group col-md-9">
                         <label for="select-category">Category <sup>*</sup></label>
