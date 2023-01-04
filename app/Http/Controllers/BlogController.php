@@ -47,7 +47,8 @@ class BlogController extends Controller
         //
         $authors = Author::all();
         $category = Category::all();
-        return view('blog.create', compact(['authors', 'category']));
+        $duration = DURATION;
+        return view('blog.create', compact(['authors', 'category', 'duration']));
     }
 
     /**
@@ -72,7 +73,8 @@ class BlogController extends Controller
             'img_name' => $imageName,
             'thumb_img_url' => $imageName,
             'status' => ACTIVE,
-            'category_id' => $request->category_id
+            'category_id' => $request->category_id,
+            'duration' => $request->duration
         ];
 
         Blog::create($blogArr);
@@ -101,7 +103,8 @@ class BlogController extends Controller
         $blog = $blog::with(['author', 'category'])->find($id);
         $authors = Author::all();
         $category = Category::all();
-        return view('blog.edit', compact('blog', 'authors', 'category'));
+        $duration = DURATION;
+        return view('blog.edit', compact('blog', 'authors', 'category', 'duration'));
     }
 
     /**
@@ -121,6 +124,7 @@ class BlogController extends Controller
             'is_enable' => $request->is_enable ? 1 : 0,
             'author_id' => $request->author_id,
             'category_id' => $request->category_id,
+            'duration' => $request->duration
             // 'thumb_img_url' => $imageName
         ];
 

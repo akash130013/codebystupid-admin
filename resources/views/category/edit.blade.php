@@ -43,7 +43,7 @@
                 </div>
                 <div class="form-row">
                     <div class="form-group col-md-9">
-                        <label for="thumbimg">Upload Thumbnail <sup>*</sup> </label><br>
+                        <label for="thumbimg">Upload Thumbnail</label><br>
                         <input type="file" accept="image/*" onchange="loadFile(event)" name="thumb_img">
                         <img id="output" class="preview-img" />
                     </div>
