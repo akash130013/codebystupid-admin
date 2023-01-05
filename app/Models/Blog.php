@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use Illuminate\Support\Carbon;
 
 
 class Blog extends Model
@@ -17,6 +18,7 @@ class Blog extends Model
         'thumb_img_url', 'img_name', 'created_at', 'updated_at', 'category_id', 'duration'
     ];
     public $timestamps = false;
+
 
     public function toSearchableArray()
     {
@@ -40,5 +42,15 @@ class Blog extends Model
     function category()
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+
+    public function setCreatedAtAttribute($value)
+    {
+        $this->attributes['created_at'] = Carbon::parse($value)->format('Y-m-d H:i:s');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
     }
 }

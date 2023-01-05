@@ -26,7 +26,7 @@ class CategoryController extends Controller
                 })
                 ->simplePaginate(PAGINATE);
         } else {
-            $categories = Category::notDeleted()->simplePaginate(PAGINATE);
+            $categories = Category::notDeleted()->orderBy('created_at', 'desc')->simplePaginate(PAGINATE);
         }
         return view('category.index', compact('categories'));
     }
