@@ -63,8 +63,10 @@
 
                     </div>
                 </div>
+                <div class="d-flex justify-content-center my-3">
+                    <button type="submit" class="btn btn-primary mx-auto">Submit</button>
+                </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>

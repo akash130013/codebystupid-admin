@@ -8,6 +8,7 @@ use App\Models\Author;
 use Illuminate\Http\Request;
 use App\Models\Blog;
 use App\Models\Category;
+use Carbon\Carbon;
 
 class BlogController extends Controller
 {
@@ -124,7 +125,8 @@ class BlogController extends Controller
             'is_enable' => $request->is_enable ? 1 : 0,
             'author_id' => $request->author_id,
             'category_id' => $request->category_id,
-            'duration' => $request->duration
+            'duration' => $request->duration,
+            'updated_at' => Carbon::now(),
             // 'thumb_img_url' => $imageName
         ];
 

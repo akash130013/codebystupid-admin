@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Laravel\Scout\Searchable;
+use Illuminate\Support\Carbon;
 
 
 class Blog extends Model
@@ -18,6 +19,7 @@ class Blog extends Model
     ];
     public $timestamps = false;
 
+
     public function toSearchableArray()
     {
         return [
@@ -30,7 +32,11 @@ class Blog extends Model
     }
     public function scopeActive($q)
     {
-        return $q->where('status', '=', ACTIVE);
+        return $q->where('status', '=', ACTIVE)->where('is_enable', '!=', SAVE_AS_DRAFT);
+    }
+    public function scopeNotDraft($q)
+    {
+        return $q->where('is_enable', '!=', SAVE_AS_DRAFT);
     }
 
     function author()
@@ -40,5 +46,15 @@ class Blog extends Model
     function category()
     {
         return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+
+    public function setCreatedAtAttribute($value)
+    {
+        $this->attributes['created_at'] = Carbon::parse($value)->format('Y-m-d H:i:s');
+    }
+
+    public function getCreatedAtAttribute($value)
+    {
+        return Carbon::parse($value)->format('d-m-Y');
     }
 }
