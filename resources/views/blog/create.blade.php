@@ -57,18 +57,6 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-9">
-                        <label for="select-duration">Duraion <sup>*</sup></label>
-                        <select class="form-select" id="select-duration" name="duration" required>
-                            <option value="">Select</option>
-                            @foreach($duration as $value)
-                            <option value="{{$value}}">{{$value}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-9">
                         <label for="select-category">Category <sup>*</sup></label>
                         <select class="form-select" id="select-category" name="category_id" required>
                             <option value="">Select</option>
@@ -81,15 +69,6 @@
 
                 <div class="form-row">
                     <div class="form-group col-md-9">
-                        <input type="checkbox" name="is_enable" class="form-check-input" id="isEnable">
-                        <label class="form-check-label" for="isEnable">Enable</label>
-                    </div>
-
-
-                </div>
-
-                <div class="form-row">
-                    <div class="form-group col-md-9">
                         <label for="thumbimg">Upload Thumbnail <sup>*</sup> </label><br>
                         <input type="file" accept="image/*" onchange="loadFile(event)" name="thumb_img">
                         <img id="output" class="preview-img" />
@@ -97,17 +76,37 @@
                     </div>
                 </div>
 
-
-
                 <div class="form-row">
-
                     <div class="form-group col-md-9" id="container">
                         <label for="formControlTextarea">Enter Long description <sup>*</sup></label>
                         <textarea name="long_desc" id="editor"></textarea>
                     </div>
                 </div>
 
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="form-row">
+                    <div class="form-group col-md-9">
+                        <label for="select-duration">Duraion <sup>*</sup></label>
+                        <select class="form-select" id="select-duration" name="duration" required>
+                            <option value="">Select</option>
+                            @foreach($duration as $value)
+                            <option value="{{$value}}">{{$value}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-9">
+                        <input type="checkbox" name="is_enable" class="form-check-input" id="isEnable">
+                        <label class="form-check-label" for="isEnable">Save as a draft</label>
+                    </div>
+                </div>
+
+
+                <div class="d-flex justify-content-center">
+                    <button type="submit" class="btn btn-primary mx-auto">Submit</button>
+                </div>
+
             </form>
             <input type="hidden" id="imageUpload" value="{{route('image.upload')}}" />
         </div>

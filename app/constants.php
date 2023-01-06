@@ -16,6 +16,8 @@ const PAGINATE = 10;
 const ACTIVE = 1;
 const INACTIVE = 0;
 const DELETED = 3;
+const SAVE_AS_DRAFT = 1;
+
 
 const DURATION = [
     '1 min read',

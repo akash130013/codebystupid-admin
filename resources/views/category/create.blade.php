@@ -50,7 +50,9 @@
 
                     </div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <div class="d-flex justify-content-center my-3">
+                    <button type="submit" class="btn btn-primary mx-auto">Submit</button>
+                </div>
             </form>
             <input type="hidden" id="imageUpload" value="{{route('image.upload')}}" />
         </div>

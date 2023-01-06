@@ -48,7 +48,7 @@
           <th scope="col">Title</th>
           <th scope="col">Author</th>
           <th scope="col">Category</th>
-          <th scope="col">Published</th>
+          <th scope="col">Save As Draft</th>
           <th scope="col">Created At</th>
           <th scope="col">Status</th>
           <th scope="col">Action</th>
@@ -63,7 +63,7 @@
           <td>{{$blog->title}}</td>
           <td>{{$blog->author->name ?? 'NA'}}</td>
           <td>{{$blog->category->title ?? 'NA'}}</td>
-          <td>{{$blog->is_enable ? "Yes" : "No"}}</td>
+          <td class="text-center">{{$blog->is_enable ? "Yes" : "No"}}</td>
           <td>{{$blog->created_at}}</td>
           <td>{{$blog->status=='1' ? 'Active': 'Inactive'}}</td>
           <td>

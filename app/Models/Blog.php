@@ -32,7 +32,11 @@ class Blog extends Model
     }
     public function scopeActive($q)
     {
-        return $q->where('status', '=', ACTIVE);
+        return $q->where('status', '=', ACTIVE)->where('is_enable', '!=', SAVE_AS_DRAFT);
+    }
+    public function scopeNotDraft($q)
+    {
+        return $q->where('is_enable', '!=', SAVE_AS_DRAFT);
     }
 
     function author()
