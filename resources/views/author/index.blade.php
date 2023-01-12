@@ -33,7 +33,7 @@
                     <th scope="col">Sr. No</th>
                     <th scope="col">Name</th>
                     <th scope="col">Created At</th>
-                    <th scope="col">Active</th>
+                    <th scope="col">Status</th>
                     <th scope="col">Action</th>
 
                 </tr>

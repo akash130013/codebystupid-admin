@@ -51,7 +51,7 @@
           <th scope="col">Save As Draft</th>
           <th scope="col">Created At</th>
           <th scope="col">Status</th>
-          <th scope="col">Action</th>
+          <th scope="col" class="text-center">Action</th>
         </tr>
       </thead>
       <tbody>
@@ -60,7 +60,9 @@
 
         <tr class="@if($blog->status == 0)inactive @endif">
           <td>{{$blogs->firstItem() + $key}}</td>
-          <td>{{$blog->title}}</td>
+          <td>
+            <p class="ellipsis"> {{$blog->title}}</p>
+          </td>
           <td>{{$blog->author->name ?? 'NA'}}</td>
           <td>{{$blog->category->title ?? 'NA'}}</td>
           <td class="text-center">{{$blog->is_enable ? "Yes" : "No"}}</td>
