@@ -17,7 +17,11 @@ class ContactusController extends Controller
     public function index(Request $request)
     {
         if ($request->filled('search')) {
-            $contactus = Contactus::search($request->search)->within('created_at')->simplePaginate(PAGINATE);
+            $contactus = Contactus::search($request->search)
+                ->query(function ($query) {
+                    return $query->orderBy('created_at', 'desc');
+                })
+                ->simplePaginate(PAGINATE);
         } else {
             $contactus = Contactus::orderBy('created_at', 'desc')->simplePaginate(PAGINATE);
         }

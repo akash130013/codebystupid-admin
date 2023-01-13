@@ -20,9 +20,8 @@ class CategoryController extends Controller
     {
         if ($request->filled('search')) {
             $categories = Category::search($request->search)
-                ->within('created_at')
                 ->query(function ($query) {
-                    return $query->notDeleted();
+                    return $query->notDeleted()->orderBy('created_at', 'desc');
                 })
                 ->simplePaginate(PAGINATE);
         } else {
@@ -54,7 +53,6 @@ class CategoryController extends Controller
             'comment_desc' => $request->comment,
             // 'profile_image_url' => $request->profile_image_url ?? '',
             'created_at' => Carbon::now(),
-
         ]);
         // 
         return redirect()->route('category')->with('success', 'Category created successfully');
