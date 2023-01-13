@@ -26,9 +26,9 @@ class BlogController extends Controller
     {
 
         if ($request->filled('search')) {
-            $blogs = Blog::search($request->search)->within('created_at')
+            $blogs = Blog::search($request->search)
                 ->query(function ($query) {
-                    return $query->notDeleted();
+                    return $query->notDeleted()->orderBy('created_at', 'desc');
                 })
                 ->simplePaginate(PAGINATE);
         } else {

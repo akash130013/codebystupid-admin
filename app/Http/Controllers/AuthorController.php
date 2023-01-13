@@ -20,9 +20,9 @@ class AuthorController extends Controller
     {
         //
         if ($request->filled('search')) {
-            $authors = Author::search($request->search)->within('created_at')
+            $authors = Author::search($request->search)
                 ->query(function ($query) {
-                    return $query->notDeleted();
+                    return $query->notDeleted()->orderBy('created_at', 'desc');
                 })
                 ->simplePaginate(PAGINATE);
         } else {
