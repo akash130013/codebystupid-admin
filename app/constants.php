@@ -17,6 +17,7 @@ const ACTIVE = 1;
 const INACTIVE = 0;
 const DELETED = 3;
 const SAVE_AS_DRAFT = 1;
+const PUBLISHED = 0;
 
 
 const DURATION = [

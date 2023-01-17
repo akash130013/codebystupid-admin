@@ -27,6 +27,13 @@ class CommonController extends Controller
                     Blog::find($request->id)->update(['status' => $request->status]);
 
                     return response(['code' =>  HTTP_OK, 'msg' => 'successfully done']);
+
+                case 'blog_draft':
+
+                    Blog::find($request->id)->update(['is_enable' => $request->status]);
+
+                    return response(['code' =>  HTTP_OK, 'msg' => 'successfully done']);
+
                 case 'author':
 
                     Author::find($request->id)->update(['is_active' => $request->status]);

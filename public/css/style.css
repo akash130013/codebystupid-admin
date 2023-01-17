@@ -114,7 +114,12 @@ sup {
 .fa-trash {
     color: red;
 }
-
+.fa-check {
+    color: lightgreen;
+}
+.fa-file {
+    color: gray;
+}
 .ms-n5 {
     margin-left: -40px;
 }
