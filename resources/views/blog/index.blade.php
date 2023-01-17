@@ -85,6 +85,15 @@
                 <i class="fa fa-ban" aria-hidden="true"></i>
               </li>
               @endif
+              @if($blog->is_enable)
+              <li class="list-item" onclick="handleClick(msg.published_title,msg.published_text,msg.delete_icon,'{{$blog->id}}','blog_draft', '{{PUBLISHED}}')">
+                <i class="fas fa-file"></i>
+              </li>
+              @else
+              <li class="list-item" onclick="handleClick(msg.draft_title,msg.draft_text,msg.delete_icon,'{{$blog->id}}','blog_draft', '{{SAVE_AS_DRAFT}}')">
+                <i class="fas fa-check"></i>
+              </li>
+              @endif
             </ul>
           </td>
         </tr>
