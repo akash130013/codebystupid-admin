@@ -28,7 +28,8 @@ class UpdateBlogRequest extends FormRequest
             'short_desc' => 'required',
             'long_desc' => 'required',
             'author_id' => 'required',
-            'category_id' => 'required'
+            'category_id' => 'required',
+            'altTag' => 'required'
         ];
     }
 }
