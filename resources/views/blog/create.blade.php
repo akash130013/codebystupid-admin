@@ -104,14 +104,6 @@
 
                 </div>
 
-                <!-- <div class="form-row">
-                    <div class="form-group col-md-9">
-                        <input type="checkbox" name="is_enable" class="form-check-input" id="isEnable">
-                        <label class="form-check-label" for="isEnable">Save as a draft</label>
-                    </div>
-                </div> -->
-
-
                 <div class="d-flex justify-content-center mt-4">
                     <button type="submit" class="btn btn-primary mx-auto">Submit</button>
                 </div>

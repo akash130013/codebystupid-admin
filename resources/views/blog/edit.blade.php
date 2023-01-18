@@ -76,17 +76,7 @@
                     </div>
                 </div>
 
-                <!-- <div class="form-row">
-                    <div class="form-group col-md-9">
-                        <label for="select-category">Category <sup>*</sup></label>
-                        <select class="form-select" id="select-category" name="category_id" required>
-                            <option value="">Select</option>
-                            @foreach($category as $value)
-                            <option value="{{$value->id}}" @if($blog->category->id == $value->id) {{'selected'}} @endif>{{$value->title}}</option>
-                            @endforeach
-                        </select>
-                    </div>
-                </div> -->
+
 
                 <div class="form-row d-flex p-1 mb-1">
                     <div class="form-group col-md-6">
@@ -127,12 +117,6 @@
                     </div>
                 </div>
 
-                <!-- <div class="form-row">
-                    <div class="form-group col-md-9">
-                        <input type="checkbox" name="is_enable" class="form-check-input" id="isEnable" @if($blog->is_enable == 1) {{'checked'}} @endif>
-                        <label class="form-check-label" for="isEnable">Save as a draft</label>
-                    </div>
-                </div> -->
 
                 <div class="d-flex justify-content-center justify-content-center mt-4">
                     <button type="submit" class="btn btn-primary mx-auto">Submit</button>
@@ -143,7 +127,6 @@
         </div>
     </div>
 
-    <!-- </div> -->
 </main>
 @endsection
 @section('js')
