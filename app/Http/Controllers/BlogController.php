@@ -75,7 +75,8 @@ class BlogController extends Controller
             'thumb_img_url' => $imageName,
             'status' => ACTIVE,
             'category_id' => $request->category_id,
-            'duration' => $request->duration
+            'duration' => $request->duration,
+            'thumb_alt_tag' => $request->altTag
         ];
 
         Blog::create($blogArr);
@@ -127,6 +128,7 @@ class BlogController extends Controller
             'category_id' => $request->category_id,
             'duration' => $request->duration,
             'updated_at' => Carbon::now(),
+            'thumb_alt_tag' => $request->altTag
             // 'thumb_img_url' => $imageName
         ];
 

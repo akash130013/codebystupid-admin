@@ -15,7 +15,7 @@ class Blog extends Model
 
     public $fillable = [
         'title', 'short_desc', 'long_desc', 'is_enable', 'author_id', 'status',
-        'thumb_img_url', 'img_name', 'created_at', 'updated_at', 'category_id', 'duration'
+        'thumb_img_url', 'img_name', 'created_at', 'updated_at', 'category_id', 'duration', 'thumb_alt_tag'
     ];
     public $timestamps = false;
 
